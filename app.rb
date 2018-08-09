@@ -1,7 +1,10 @@
 require 'sinatra'
 
 get '/' do
-  'Hello world i know nothing and i am okay with that'
+  erb :isbn
+end
+
+post '/isbn1' do
 end
 
 #html submit
