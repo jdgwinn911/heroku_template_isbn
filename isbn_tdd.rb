@@ -19,6 +19,10 @@ class Isbn < Minitest::Test
         assert_equal(false, isbn_10("abcdefghij"))
     end
 
+    def test_that_the_isbn10_is_10_digits_long
+        assert_equal("1234567891", isbn_10("123456789123"))
+    end
+
 
 
 

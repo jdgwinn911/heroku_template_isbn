@@ -1,6 +1,7 @@
 def isbn_10(num)
     num.gsub!(/[- ]/, '')
     wrong = 0 
+    
     if num.gsub(/[\D]/, '') != num
         wrong += 1
     end
@@ -16,6 +17,11 @@ def isbn_10(num)
     unless wrong == 0
         return false
     end
+
+    stopgap = num.split('')
+
+    check_dig = stopgap.pop
+    
 
 
 
