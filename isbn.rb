@@ -10,7 +10,7 @@ def isbn_10(num)
      check = num.gsub(/[\D]/, '')
      x = num[-1]
     if "#{check}#{x}" != num
-          wrong += 1
+       wrong += 1
         end
      end
 
@@ -21,10 +21,27 @@ def isbn_10(num)
     stopgap = num.split('')
 
     check_dig = stopgap.pop
+    if check_dig == "x" || check_dig == "X"
+        check_dig = 10
+    end
+
+    sum = 0
+
+    stopgap.each_with_index do |var, indx|
+        spot = var.to_i * (indx + 1)
+        sum += spot
+    end
     
+    sumcheck = sum % 11
+
+    if sumcheck == check_dig.to_i
+        return true
+    else
+        return false
+    end
 
 
 
-    num
+    true
 end
    
