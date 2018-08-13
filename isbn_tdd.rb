@@ -4,44 +4,44 @@ require_relative "isbn.rb"
 class Isbn < Minitest::Test
 
      def test_that_empty_string_returns_string
-        assert_equal(true, isbn_10("877195869x"))
+        assert_equal("877195869x", isbn_10_dash_n_space_n_check("877195869x"))
      end
 
-     def test_that_string_that_has_dashes_or_spaces_gets_returned_as_empty_string
-        assert_equal(true, isbn_10("87--71---95--86--9-x"))
+     def test_that_there_are_no_spaces_and_dashes
+        assert_equal("877195869x", isbn_10_dash_n_space_n_check("877195869x"))
      end
 
-     def test_that_string_can_have_one_letter_in_it
-        assert_equal(true, isbn_10("8   771 958  6 9x"))
+     def test_that_isbn_10_can_have_lettter_x_at_end
+        assert_equal("877195869x", isbn_10_dash_n_space_n_check("877195869x"))
      end
 
-     def test_that_the_isbn10_num_is_correct
-        assert_equal(false, isbn_10("abcdefghij"))
+     def test_that_isbn_10_is_correct
+        assert_equal(false, isbn_10_dash_n_space_n_check("1297691"))
+     end
+
+     def test_that_isbn_10_split_n_each_do_n_sumcheck_is_doing_its_job
+        num = "877195869X"
+        assert_equal(true, isbn_10_split_n_each_do_n_sumcheck(num))
+     end
+
+    def test_turn_num_into_array_returns_array()
+        num = "876546549847"
+        assert_equal(Array, turn_num_into_array(num).class)
     end
 
-    def test_that_the_isbn10_is_10_digits_long
-        assert_equal(true, isbn_10("8  77-19-- -58  69x"))
+    def test_that_isbn_10_is_invalid
+        assert_equal(false, turn_num_into_array("1297691"))
     end
 
-    def test_that_its_only_numbers
-        assert_equal(false, isbn_10("123457654"))
+    def test_that_isbn_10_is_valid_isbn_number
+        assert_equal(true, isbn_10_split_n_each_do_n_sumcheck("877195869x"))
     end
 
-    def test_for_an_invalid_isbn
-        assert_equal(false, isbn_10("877195x869"))
+    def test_that_isbn_13_has_no_spaces_and_dashes
+        assert_equal(true, isbn_13_dashes_n_spaces("9780470059029"))
     end
 
-    def test_if_isbn_is_correct
-        assert_equal(true, isbn_10("0471958697"))
-    end
-
-    def test_that_empty_string_wont_mess_up
-        assert_equal(false, isbn_10(' '))
-    end
-
-
-
-
+    
 
 
 
