@@ -38,8 +38,23 @@ class Isbn < Minitest::Test
     end
 
     def test_that_isbn_13_has_no_spaces_and_dashes
-        assert_equal(true, isbn_13_dashes_n_spaces("9780470059029"))
+        assert_equal("9780470059029", isbn_13_dashes_n_spaces("9780470059029"))
     end
+
+    def test_that_isbn13_arr()
+        num = "9780470059029"
+        assert_equal(Array, isbn13_arr(num).class)
+    end
+
+    def test_that_isbn13_is_valid
+        assert_equal(true, isbn13_each_do_n_sumcheck("9780470059029"))
+    end
+
+    def test_for_an_invalid_isbn_for_isbn13
+        assert_equal(false, isbn13_each_do_n_sumcheck("1214414145"))
+    end
+
+
 
     
 

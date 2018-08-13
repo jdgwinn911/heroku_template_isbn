@@ -8,14 +8,14 @@ def isbn_10_dash_n_space_n_check(num)
      wrong -= 1
      check = num.gsub(/[\D]/, '')
      x = num[-1]
-    if "#{check}#{x}" != num
-       wrong += 1
-    end
+        if "#{check}#{x}" != num
+         wrong += 1
+        end
     end
     if num.length < 10
         wrong += 1
     end
-    unless wrong == 0
+     unless wrong == 0
         return false
     end
     num
@@ -63,7 +63,39 @@ def isbn_13_dashes_n_spaces(num)
     unless wrong == 0
         return false
     end
+    num
 end
+
+def isbn13_arr(num)
+    num = isbn_13_dashes_n_spaces(num)
+    if num == false
+        return false
+    end
+    stopgap = num.split('')
+    stopgap
+end
+
+def isbn13_each_do_n_sumcheck(num)
+    num = isbn13_arr(num)
+    check_dig = num.pop
+    sum = 0
+    num.each_with_index do |var, indx|
+        spot = var.to_i * (indx + 1)
+        sum += spot
+    end
+     check_dig = 13
+    sumcheck = sum % 10
+    if sumcheck == check_dig.to_i
+        return true
+    else
+        return false
+    end
+
+end
+
+
+    
+
 
 
     
