@@ -38,7 +38,7 @@ class Isbn < Minitest::Test
     end
 
     def test_that_isbn_13_has_no_spaces_and_dashes
-        assert_equal("9780470059029", isbn_13_dashes_n_spaces("9780470059029"))
+        assert_equal("9780470059029", isbn_10_dash_n_space_n_check("9780470059029"))
     end
 
     def test_that_isbn13_arr()

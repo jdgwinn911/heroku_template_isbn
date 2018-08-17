@@ -11,6 +11,9 @@ def isbn_10_dash_n_space_n_check(num)
         if "#{check}#{x}" != num
          wrong += 1
         end
+        if num.length != 10
+            wrong += 1
+        end
     end
     if num.length < 10
         wrong += 1
@@ -22,7 +25,7 @@ def isbn_10_dash_n_space_n_check(num)
 end
 
 def turn_num_into_array(num)
-    num =  isbn_10_dash_n_space_n_check(num)
+    num =isbn_10_dash_n_space_n_check(num)
     if num == false
         return false
     end
@@ -47,27 +50,24 @@ def isbn_10_split_n_each_do_n_sumcheck(num)
     else
         return false
     end
-
 end
 
-
-def isbn_13_dashes_n_spaces(num)
-    num.gsub!(/[- ]/, '')
-    wrong = 0 
-    if num.gsub(/[\D]/, '') != num
-        wrong += 1
-    end
-    if num.length < 13
-        wrong += 1
-    end
-    unless wrong == 0
-        return false
-    end
-    num
-end
+# def isbn_13_dashes_n_spaces(num)
+#     num.gsub!(/[- ]/, '')
+#     wrong = 0 
+#     if num.gsub(/[\D]/, '') != num
+#         wrong += 1
+#     end
+#     if num.length < 13
+#         wrong += 1
+#     end
+#     unless wrong == 0
+#         return false
+#     end
+#     num
+# end
 
 def isbn13_arr(num)
-    num = isbn_13_dashes_n_spaces(num)
     if num == false
         return false
     end
@@ -77,26 +77,46 @@ end
 
 def isbn13_each_do_n_sumcheck(num)
     num = isbn13_arr(num)
+    if num == false
+        return false
+    end
     check_dig = num.pop
     sum = 0
     num.each_with_index do |var, indx|
-        spot = var.to_i * (indx + 1)
-        sum += spot
+        var = var.to_i
+       if indx.even?
+        var * 1
+       else 
+        var * 3
+       end
+        sum += var
     end
-     check_dig = 13
-    sumcheck = sum % 10
+    sumcheck = 10 - sum % 10
+    if sumcheck.to_s.length == 2
+        sumcheck %= 10
+    end
     if sumcheck == check_dig.to_i
         return true
     else
         return false
     end
-
 end
 
 
+def funky_fresh(num)
+    num_num = isbn_10_dash_n_space_n_check(num)
+    if num_num == false
+        return false
+    end
+    check_num = num_num.length
+    if check_num == 10 
+        num = isbn_10_split_n_each_do_n_sumcheck(num_num)
+    elsif check_num == 13
+        num = isbn13_each_do_n_sumcheck(num_num)
+    else 
+        return false
+    end
+end
     
 
-
-
     
-
