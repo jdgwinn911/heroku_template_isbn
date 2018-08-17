@@ -6,16 +6,23 @@
     <body>
         <form method="post" action="isbn1">
             <center>
-            <h2>Welcome to Isbn checker, please enter a isbn<h2>
-                <textarea name="texty" rows="20" cols="75">
-                </textarea>
+            <h2>Welcome to Isbn checker, please enter a isbn</h2>
+                <textarea name="texty" rows="20" cols="75" required></textarea>
                 <div class="button">
-                <input type="submit" name="button" ><br>
-
+                    <input type="submit" name="button" ><br>
+                </div>
+                <div class="results" id="onload1">
+                
+                <h2>Here's your ISBN numbers</h2>
                 <%isbn_10_or_13.each_with_index do |v, i|%>
+                <div class="num" id="onload2">
                 <%=v%>
+                </div>
+                <div class="numm">
                 <%=checkk[i]%><br>
+                </div>
                 <%end%>
+                </div>
                
 
 

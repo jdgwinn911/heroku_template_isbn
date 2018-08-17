@@ -1,1 +1,26 @@
 body {background-color: coral;}
+.results
+{
+    background-color:#ff44447e;
+    width: 50%;
+    border: 20px solid #0feb0f79;
+    padding: 5px;
+    margin: 20px;
+    box-shadow: -5px -5px 10px;
+}
+.num,
+.numm
+{
+    display: inline-block;
+    width: 40%;
+}
+.num
+{
+    text-align: left;
+    content: "";
+}
+
+.numm
+{
+    text-align: right;
+}
