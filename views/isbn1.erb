@@ -11,8 +11,12 @@
                 </textarea>
                 <div class="button">
                 <input type="submit" name="button" ><br>
-                <%=isbn_10_or_13%>
-                <%=checkk%>
+
+                <%isbn_10_or_13.each_with_index do |v, i|%>
+                <%=v%>
+                <%=checkk[i]%><br>
+                <%end%>
+               
 
 
 

@@ -9,8 +9,8 @@ load 'local_ENV.rb' if File.exist?('local_ENV.rb')
 s3 = Aws::S3::Client.new(profile: 'demogorgon', region: 'us-east-2')
 
 get '/' do
-  isbn_10_or_13 = session[:isbn] || ""
-  checkk = session[:check] || ""
+  isbn_10_or_13 = session[:isbn] || []
+  checkk = session[:check] || []
   erb :isbn1, locals:{ isbn_10_or_13: isbn_10_or_13, checkk: checkk}
 end
 
@@ -23,14 +23,11 @@ post '/isbn1' do
   #  elsif display == false
   #   display = "invalid"
   #  end
-  session[:isbn] = num
-  session[:check] = display
-  redirect '/' 
 
   valid =[]
   isbn_name = []
-  valid << "ISBN"
-  isbn_name << "is Valid?"
+  valid << "is valid?"
+  isbn_name << "ISBN"
   display.each do |v|
     if funky_fresh(v)
       valid << "Valid"
@@ -46,10 +43,14 @@ post '/isbn1' do
 
   validity = CSV.generate do |csv|
     valid.each_with_index do |v,i|
+      csv << [isbn_name[i], v]
+    end
+  end
     
 
-
-
+  session[:isbn] = isbn_name
+  session[:check] = valid
+  redirect '/'
 end
 
 
