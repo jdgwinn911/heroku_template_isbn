@@ -6,7 +6,7 @@ require_relative 'isbn.rb'
 enable :sessions
 load 'local_ENV.rb' if File.exist?('local_ENV.rb')
 
-s3 = Aws::S3::Client.new(profile: 'jdgwinn911', region: 'us-east-2')
+# s3 = Aws::S3::Client.new(profile: 'jdgwinn911', region: 'us-east-2')
 
 get '/' do
   isbn_10_or_13 = session[:isbn] || []
@@ -39,11 +39,11 @@ post '/isbn1' do
     end
   end
 
-  validity = CSV.generate do |csv|
-    valid.each_with_index do |v,i|
-      csv << [isbn_name[i], v]
-    end
-  end
+  # validity = CSV.generate do |csv|
+  #   valid.each_with_index do |v,i|
+  #     csv << [isbn_name[i], v]
+  #   end
+  # end
 
 
 
@@ -52,7 +52,7 @@ post '/isbn1' do
 
 
  
-  s3.put_object(bucket:'yucky-bucket', body: validity, key:"something.csv")
+  # s3.put_object(bucket:'yucky-bucket', body: validity, key:"something.csv")
   redirect '/'
 end
 
