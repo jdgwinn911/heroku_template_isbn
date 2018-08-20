@@ -1,4 +1,5 @@
 def isbn_10_dash_n_space_n_check(num)
+    num = num.to_s
     num.gsub!(/[- ]/, '')
     wrong = 0 
     if num.gsub(/[\D]/, '') != num

@@ -44,14 +44,15 @@ post '/isbn1' do
       csv << [isbn_name[i], v]
     end
   end
-    
+
+
 
   session[:isbn] = isbn_name
   session[:check] = valid
 
 
  
-  s3.put_object(bucket:'yucky-bucket', body: validity, key:"isbn.csv")
+  s3.put_object(bucket:'yucky-bucket', body: validity, key:"something.csv")
   redirect '/'
 end
 
